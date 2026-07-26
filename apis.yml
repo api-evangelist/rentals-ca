@@ -1,0 +1,119 @@
+aid: rentals-ca
+url: https://raw.githubusercontent.com/api-evangelist/rentals-ca/refs/heads/main/apis.yml
+name: Rentals.ca
+kind: company
+description: >-
+  Rentals.ca is a Toronto-headquartered residential rental marketplace and
+  the flagship brand of the Rentals.ca Network, which also operates Rentfaster.ca,
+  Louer.ca, Rentboard.ca, RentCanada.com and TorontoRentals.com across more than 100
+  Canadian cities. The network is owned and operated by Rentsync (formerly Landlord
+  Web Solutions Inc.), which also acquired the research firm Urbanation in January
+  2026 and co-publishes the monthly Rentals.ca / Urbanation National Rent Report;
+  Rentals.ca listing data also feeds a Statistics Canada rental housing index. In
+  the Canadian real estate value chain it sits on the rentals side of the market,
+  outside CREA's REALTOR.ca and Data Distribution Facility, which syndicate member
+  boards' for-sale listings. Its API posture is honest but closed: rentals.ca itself
+  publishes no developer portal, no OpenAPI, and no documented public endpoint, and
+  the entire consumer site sits behind a Cloudflare managed challenge that returns
+  HTTP 403 to anonymous clients. The real developer surface belongs to the parent,
+  at the Rentsync Partners portal (partners.rentsync.ca, branded "LIFT System API"),
+  which publicly names a REST API, an Ad Syndication API and a Search API but places
+  all documentation behind an account whose registration form requires a written
+  application explaining what you intend to build. There is no RESO Web API or Data
+  Dictionary certification, no OData $metadata document, no Universal Property
+  Identifier, and no open dataset published by the company.
+image: https://rentals.ca/static/fe/img/favicon/apple-touch-icon.png
+tags:
+- Real Estate
+- Canada
+- Rentals
+- Property Listings
+- Rental Marketplace
+- PropTech
+- Listing Syndication
+- Market Data
+created: '2026-07-26'
+modified: '2026-07-26'
+specificationVersion: '0.19'
+apis:
+- aid: rentals-ca:rentsync-partners-rest-api
+  name: Rentsync Partners REST API
+  description: REST API described on the public Rentsync Partners portal (branded
+    "LIFT System API") as giving partners "access to the underlying data structures
+    of the LIFT System" with "detailed Canadian rental information". This is the API
+    layer behind the Rentals.ca Network's rental listing data. Documentation is not
+    public — https://partners.rentsync.ca/documentation returns HTTP 302 to
+    /users/sign_in — and no base URL, endpoint list, or authentication scheme is
+    disclosed anonymously. Access requires registering and submitting a written
+    application describing what you plan to build.
+  humanURL: https://partners.rentsync.ca/
+  tags:
+  - Rentals
+  - Property Listings
+  - Canada
+  properties:
+  - type: Portal
+    url: https://partners.rentsync.ca/
+  - type: Signup
+    url: https://partners.rentsync.ca/users/sign_up
+  - type: Login
+    url: https://partners.rentsync.ca/users/sign_in
+- aid: rentals-ca:rentsync-ad-syndication-api
+  name: Rentsync Ad Syndication API
+  description: Ad syndication API described on the public Rentsync Partners portal
+    as programming interfaces used to "interact with rental industry professionals
+    using Rentsync's Ad Syndication to manage their online advertising". This is the
+    machine interface to the listing-distribution business that pushes property
+    advertising into the Rentals.ca Network and partner portals. Documentation sits
+    behind the same approved-account gate; no base URL, feed schema, or auth model
+    is published anonymously.
+  humanURL: https://partners.rentsync.ca/
+  tags:
+  - Listing Syndication
+  - Advertising
+  - Rentals
+  properties:
+  - type: Portal
+    url: https://partners.rentsync.ca/
+  - type: Signup
+    url: https://partners.rentsync.ca/users/sign_up
+- aid: rentals-ca:rentsync-search-api
+  name: Rentsync Search API
+  description: Search API described on the public Rentsync Partners portal as a way
+    to "query the LIFT platform for specific information", positioned by the vendor
+    as "a great way to get data for mapping applications" — the geospatial and query
+    surface over Canadian rental listings. Documentation is gated behind an approved
+    partner account; no base URL, query grammar, or rate limits are published
+    anonymously.
+  humanURL: https://partners.rentsync.ca/
+  tags:
+  - Search
+  - Geospatial
+  - Rentals
+  properties:
+  - type: Portal
+    url: https://partners.rentsync.ca/
+  - type: Signup
+    url: https://partners.rentsync.ca/users/sign_up
+common:
+- type: Website
+  url: https://rentals.ca/
+- type: Portal
+  url: https://partners.rentsync.ca/
+- type: Signup
+  url: https://partners.rentsync.ca/users/sign_up
+- type: Login
+  url: https://partners.rentsync.ca/users/sign_in
+- type: StatusPage
+  url: https://status.rentals.ca/
+- type: Blog
+  url: https://rentals.ca/blog
+- type: LinkedIn
+  url: https://ca.linkedin.com/company/rentals.ca
+- type: Website
+  url: https://rentsync.com/
+- type: Documentation
+  url: https://rentsync.com/integrations
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,289 @@
+aid: rentals-ca
+name: Rentals.ca
+review:
+  question: Does Rentals.ca expose a public, machine-readable API surface — and what
+    does RESO certification versus actual reachability look like for a Canadian
+    rental marketplace?
+  answer: false
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  tier: rental-listings
+sectorPosture:
+  resoPosture:
+    summary: no RESO reference found
+    certified: false
+    webApiCertification: none found
+    dataDictionaryCertification: none found
+    dataDictionaryVersion: null
+    universalPropertyIdentifier: no UPI reference found
+    odataMetadataDocument: none — https://rentals.ca/$metadata returned HTTP 403
+      (Cloudflare managed challenge); no OData surface is advertised on any
+      Rentals.ca or Rentsync property.
+    directoryEvidence: |
+      Probed the RESO certified-organizations directory at
+      https://www.reso.org/certificates/ (HTTP 200, 416,233 bytes) and grepped the
+      served HTML for "rentals.ca", "rentsync" and "urbanation" — zero matches. The
+      directory is JavaScript-rendered, so this is a soft negative on its own; it is
+      corroborated by the absence of any RESO, Data Dictionary, Web API Core, OData,
+      $metadata or UPI reference on rentals.ca, rentsync.com,
+      partners.rentsync.ca, or in web search for the company.
+      https://www.reso.org/certification/ (HTTP 200) states RESO currently certifies
+      Web API Core 2.0.0, Data Dictionary 2.0 and RESO Common Format.
+    marketExplanation: |
+      RESO certification is an artifact of the US MLS system, mandated by NAR across
+      roughly 500 MLSs. Canada's residential for-sale market runs instead through a
+      single national cooperative, CREA, whose REALTOR.ca Data Distribution Facility
+      (DDF) syndicates member boards' listings and is itself documented as a RESO
+      Web API implementation at https://ddfapi-docs.realtor.ca/. Rentals.ca is a
+      RENTALS marketplace and is not a CREA member board, a DDF participant, or an
+      MLS. Its data is landlord- and property-manager-supplied rental inventory, not
+      board-owned sales listings. RESO is therefore genuinely absent here rather
+      than merely undisclosed — the honest finding for this organization is that
+      RESO does not apply and no RESO artifact of any kind was found.
+  accessGate:
+    classification: application-approval
+    gated: true
+    whatADeveloperMustDo: |
+      Register an account at https://partners.rentsync.ca/users/sign_up (HTTP 200).
+      The registration form collects First name, Last name, Email, Company name,
+      Company url, Username, Password and Password confirmation, plus a required
+      free-text "Application" field whose prompt reads verbatim: "Tell us why you
+      want access to the LIFT API. What are you planning to build?" Access is
+      therefore reviewed by a human before credentials are issued. No IDX/VOW-style
+      data licence, MLS membership, board membership, or real-estate licence is
+      required — the gate is a business-review application, not a regulated
+      membership. No self-serve key issuance exists.
+    documentationReachable: false
+    documentationEvidence: |
+      https://partners.rentsync.ca/documentation returns HTTP 302 with
+      Location: https://partners.rentsync.ca/users/sign_in — every documentation
+      route redirects to the login. The public landing page names the three APIs and
+      nothing more.
+  openData:
+    exists: false
+    explanation: |
+      Rentals.ca publishes no open, unlicensed, publicly callable dataset. Two
+      near-misses were checked and rejected:
+      (1) The Rentals.ca / Urbanation National Rent Report is a free monthly
+      narrative report (https://rentals.ca/national-rent-report, HTTP 403 to
+      anonymous clients), not a dataset or an API.
+      (2) Rentals.ca supplies listing data to Statistics Canada for a rental housing
+      index. The resulting index is published openly by Statistics Canada under
+      StatCan's own open-data terms and API — that openness belongs to StatCan, not
+      to Rentals.ca, and the underlying listing data is not released.
+      The commercial counterpart, the subscription Urbanation x Rentsync Data Portal
+      (https://lp.rentsync.com/urbanation, HTTP 200), is explicitly paid and
+      account-gated.
+  authModel:
+    apiAuthentication: not publicly documented
+    evidence: |
+      No authentication documentation is reachable anonymously. The partner portal
+      itself uses a classic Rails/Devise session login (username + password, with
+      "Forgot your password?" and "Didn't receive unlock instructions?" links) at
+      https://partners.rentsync.ca/users/sign_in. Whether the APIs behind it use an
+      API key, a bearer token, or OAuth2 is not disclosed on any public page.
+    openIdConnect: |
+      https://rentals.ca/.well-known/openid-configuration returned HTTP 404 from the
+      application (a real 33,205-byte app 404 page, not the Cloudflare challenge) —
+      no OIDC discovery document is served.
+  webhooksEventsSdksPostman:
+    webhooks: none found
+    events: none found
+    sdks: none found
+    postman: none found
+    cli: none found
+    note: |
+      Absence is the finding. No GitHub organization exists for the company —
+      github.com/rentals-ca, github.com/rentalsca and github.com/rentsync all
+      returned HTTP 404. Rentsync's integrations page
+      (https://rentsync.com/integrations, HTTP 200) lists partner software (Yardi,
+      RentCafe, MRI, ResMAN, Rent Manager, Buildium, Hopem, Sage, Intuit QuickBooks,
+      Salesforce, Zapier) and states "Beyond our available API, we integrate with
+      the top prop-tech companies", but publishes no technical specification, feed
+      format, or developer documentation.
+  productApiFamily:
+    segmentationAsDocumented: |
+      The three families below are quoted from the vendor's own public portal copy
+      at https://partners.rentsync.ca/. They are the only API segmentation the
+      company publishes anywhere.
+    families:
+    - name: Rest API
+      vendorCopy: Get access to the underlying data structures of the LIFT System.
+        Detailed Canadian rental information is just a request away.
+      segment: listings / property records
+    - name: Ad Syndication API
+      vendorCopy: Work with our programming interfaces to interact with rental
+        industry professionals using Rentsync's Ad Syndication to manage their
+        online advertising.
+      segment: listing syndication / advertising
+    - name: Search API
+      vendorCopy: Query the LIFT platform for specific information. It's a great way
+        to get data for mapping applications.
+      segment: listings search / geospatial
+    notCovered: |
+      No valuation/AVM, title, escrow, conveyancing, land-registry, tenancy-agreement,
+      documents, or payments API is documented. Note that Canadian land registration
+      is provincial and largely privatised (Teranet operates Ontario's registry under
+      concession), so the public record itself is a commercial product — but that
+      layer is entirely outside Rentals.ca's surface.
+findings:
+  summary: |
+    Rentals.ca publishes no developer surface of its own. Every path probed on
+    rentals.ca returned an HTTP 403 Cloudflare managed challenge ("Just a moment...",
+    cType: managed, cZone: rentals.ca) to anonymous clients, including the homepage,
+    so even the marketing site is not machine-readable without solving a JavaScript
+    challenge. The host api.rentals.ca resolves to the same Cloudflare addresses as
+    the apex (104.18.20.199 / 104.18.21.199) and answers every probed path with the
+    same challenge — it is the mobile/web application's private backend, not a
+    published API, and nothing about it is documented. developer.rentals.ca,
+    developers.rentals.ca, docs.rentals.ca and data.rentals.ca do not resolve at all.
+
+    The real developer surface belongs to the parent company. Rentals.ca is owned and
+    operated by Rentsync (formerly Landlord Web Solutions Inc., founded 2010,
+    St. Catharines and Toronto), which launched Rentals.ca Network, Inc. on
+    2021-09-30 bringing together Rentals.ca, Rentfaster.ca, Louer.ca, Rentboard.ca,
+    RentCanada.com and TorontoRentals.com, and acquired the research firm Urbanation
+    in January 2026. Rentsync operates a live, publicly reachable partner developer
+    portal at https://partners.rentsync.ca/ (HTTP 200), branded "LIFT System API"
+    after Rentsync's former platform name and copyrighted to Landlord Web Solutions
+    Inc. That portal is where the three real APIs are named — and where they stop
+    being reachable, because all documentation redirects to a login and account
+    creation requires a written application.
+
+    Certification is not the issue in this market; reachability is. There is no RESO
+    posture to report because RESO does not reach Canadian rentals at all, and the
+    company publishes nothing licensed-open in its place. A developer wanting
+    Canadian rental listing data from this network must apply, explain their product,
+    and wait for a human to approve them.
+  httpProbes:
+  - url: https://rentals.ca/
+    status: 403
+    note: Cloudflare managed challenge ("Just a moment...", noindex/nofollow,
+      cType 'managed'). Same for /api, /developers, /landlords, /partners, /data,
+      /about, /openapi.json, /swagger.json, /api-docs, /$metadata,
+      /sitemap-global.xml, /national-rent-report, /blog/*.
+  - url: https://rentals.ca/robots.txt
+    status: 200
+    note: 'Served plain. Sitemap: https://rentals.ca/sitemap-global.xml. Allows all
+      user-agents but disallows *-feed.json, *-feed.xml, *bbox=*, *amenities=*,
+      *types=* — internal site feed and faceted-search patterns, not a public API.'
+  - url: https://rentals.ca/.well-known/openid-configuration
+    status: 404
+    note: Real application 404 page (33,205 bytes) rather than the challenge page —
+      confirms no OIDC discovery document is served.
+  - url: https://api.rentals.ca/
+    status: 403
+    note: Host resolves (104.18.20.199, 104.18.21.199 — identical to apex). All
+      probed paths (/, /v1, /graphql, /openapi.json) return the Cloudflare challenge.
+      Undocumented application backend; not listed as an API.
+  - url: https://developer.rentals.ca/
+    status: 000
+    note: NXDOMAIN. Same for developers.rentals.ca, docs.rentals.ca,
+      data.rentals.ca.
+  - url: https://status.rentals.ca/
+    status: 200
+    note: '"Rentals.ca Network Status Page", fully JavaScript-rendered (body is a
+      noscript notice). A component path https://status.rentals.ca/default/public-api
+      is search-indexed and also returns 200, suggesting a status component named
+      "Public API", but the component list could not be confirmed anonymously and no
+      such public API is documented anywhere. Recorded as an observation, not a
+      capability.'
+  - url: https://partners.rentsync.ca/
+    status: 200
+    note: Live public developer portal, "LIFT System API". Names Rest API, Ad
+      Syndication API and Search API with vendor descriptions. Footer - "Copyright
+      2026 Landlord Web Solutions Inc."
+  - url: https://partners.rentsync.ca/documentation
+    status: 302
+    note: 'Redirects to https://partners.rentsync.ca/users/sign_in — documentation is
+      account-gated.'
+  - url: https://partners.rentsync.ca/users/sign_up
+    status: 200
+    note: Registration form including required "Application" free-text field - "Tell
+      us why you want access to the LIFT API. What are you planning to build?" This
+      is the access gate.
+  - url: https://partners.rentsync.ca/users/sign_in
+    status: 200
+    note: Rails/Devise session login (Login, Password, Remember Me, Forgot your
+      password?, Didn't receive unlock instructions?).
+  - url: https://partners.rentsync.ca/openapi.json
+    status: 404
+    note: Also 404 for /swagger.json, /api-docs, /docs, /api. No machine-readable
+      contract is published.
+  - url: https://rentsync.com/
+    status: 200
+    note: Parent company site. States "Beyond our available API, we integrate with
+      the top prop-tech companies" and "The Next Evolution of the Rentals.ca Infinity
+      Network".
+  - url: https://rentsync.com/integrations
+    status: 200
+    note: Partner software list only; no API documentation, feed format, or developer
+      specification.
+  - url: https://developer.rentsync.com/
+    status: 404
+    note: Also 404 - https://docs.rentsync.com/, https://api.rentsync.com/,
+      https://rentsync.com/api, https://rentsync.com/developers.
+  - url: https://lp.rentsync.com/urbanation
+    status: 200
+    note: Subscription Urbanation x Rentsync Data Portal landing page. Paid,
+      account-gated market data; not an API and not open data.
+  - url: https://www.reso.org/certificates/
+    status: 200
+    note: RESO certified-organizations directory. No occurrence of "rentals.ca",
+      "rentsync" or "urbanation" in the served HTML; page is JS-rendered.
+  - url: https://www.reso.org/certification/
+    status: 200
+    note: 'Confirms current certification scope - Web API Core 2.0.0, Data Dictionary
+      2.0, RESO Common Format. Directory - https://www.reso.org/certificates/, live
+      reports - https://certification.reso.org/.'
+  - url: https://github.com/rentals-ca
+    status: 404
+    note: No GitHub organization. Also 404 - github.com/rentalsca,
+      github.com/rentsync.
+  - url: https://ca.linkedin.com/company/rentals.ca
+    status: 200
+    note: 'Company profile - Toronto, Ontario (672 Dupont St, Suite 504); 11-50
+      employees; "free-to-use, leading marketplace connecting private landlords and
+      renters"; residential rentals across 100+ Canadian cities.'
+  - url: https://rentals.ca/static/fe/img/favicon/apple-touch-icon.png
+    status: 200
+    note: Real brand icon; served without the challenge. Used as the apis.yml image.
+  specsHarvested: 0
+  specsNote: |
+    Nothing machine-readable was found to save. No OpenAPI, Swagger, RAML, OData
+    $metadata, GraphQL schema, AsyncAPI, or Postman collection is published by
+    Rentals.ca, Rentsync, or the LIFT System API portal. The openapi/ directory is
+    therefore intentionally absent rather than empty.
+sources:
+- url: https://partners.rentsync.ca/
+  type: Portal
+  note: The only public page naming the network's three APIs.
+- url: https://partners.rentsync.ca/users/sign_up
+  type: Signup
+  note: Verbatim source of the access-gate classification.
+- url: https://rentals.ca/robots.txt
+  type: Robots
+  note: Only rentals.ca path reachable without solving the Cloudflare challenge.
+- url: https://rentsync.com/
+  type: Website
+  note: Parent company; owns and operates the Rentals.ca Network.
+- url: https://rentsync.com/integrations
+  type: Documentation
+  note: Integration partner list; no technical specification.
+- url: https://ddfapi-docs.realtor.ca/
+  type: Documentation
+  note: CREA REALTOR.ca DDF Web API docs — the Canadian RESO-based seam that
+    Rentals.ca is NOT part of. Cited for market context only.
+- url: https://www.reso.org/certification/
+  type: Documentation
+  note: RESO certification scope and directory locations.
+actions:
+  apisYmlCreated: true
+  apisListed: 3
+  openapiHarvested: false
+  reason: |
+    Three real, vendor-named APIs were captured from a live public portal, each with
+    the vendor's own description, a humanURL, and portal/signup properties. No
+    baseURL is asserted for any of them because none is published — asserting one
+    would be fabrication. No specs were saved because none exist publicly.
