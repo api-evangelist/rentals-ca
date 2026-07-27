@@ -96,6 +96,8 @@ apis:
   - type: Signup
     url: https://partners.rentsync.ca/users/sign_up
 common:
+- type: DomainSecurity
+  url: security/rentals-ca-domain-security.yml
 - type: Website
   url: https://rentals.ca/
 - type: Portal
@@ -114,6 +116,12 @@ common:
   url: https://rentsync.com/
 - type: Documentation
   url: https://rentsync.com/integrations
+- type: PrivacyPolicy
+  url: https://rentsync.com/privacy-policy
+- type: TermsOfService
+  url: https://rentsync.com/terms-of-use
+- type: LLMsTxt
+  url: llms/rentals-ca-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
