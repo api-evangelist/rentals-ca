@@ -22,6 +22,17 @@ description: >-
   application explaining what you intend to build. There is no RESO Web API or Data
   Dictionary certification, no OData $metadata document, no Universal Property
   Identifier, and no open dataset published by the company.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://rentals.ca/static/fe/img/favicon/apple-touch-icon.png
 tags:
 - Real-Estate
