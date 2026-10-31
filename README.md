@@ -1,4 +1,4 @@
-# Rentals.ca (rentals-ca)
+# Rentals.ca
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,101 +66,88 @@
 
 Rentals.ca is a Toronto-headquartered residential rental marketplace and the flagship brand of the Rentals.ca Network, which also operates Rentfaster.ca, Louer.ca, Rentboard.ca, RentCanada.com and TorontoRentals.com across more than 100 Canadian cities. The network is owned and operated by Rentsync (formerly Landlord Web Solutions Inc.), which also acquired the research firm Urbanation in January 2026 and co-publishes the monthly Rentals.ca / Urbanation National Rent Report; Rentals.ca listing data also feeds a Statistics Canada rental housing index. In the Canadian real estate value chain it sits on the rentals side of the market, outside CREA's REALTOR.ca and Data Distribution Facility, which syndicate member boards' for-sale listings. Its API posture is honest but closed: rentals.ca itself publishes no developer portal, no OpenAPI, and no documented public endpoint, and the entire consumer site sits behind a Cloudflare managed challenge that returns HTTP 403 to anonymous clients. The real developer surface belongs to the parent, at the Rentsync Partners portal (partners.rentsync.ca, branded "LIFT System API"), which publicly names a REST API, an Ad Syndication API and a Search API but places all documentation behind an account whose registration form requires a written application explaining what you intend to build. There is no RESO Web API or Data Dictionary certification, no OData $metadata document, no Universal Property Identifier, and no open dataset published by the company.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/rentals-ca/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/rentals-ca/refs/heads/main/apis.yml)
+**Areas:** Real Estate · Canada · Rentals · Property Listings · Rental Marketplace · PropTech · Listing Syndication · Market Data
 
-## Tags
+## Rentals.ca on APIs.io
 
-- Real Estate
-- Canada
-- Rentals
-- Property Listings
-- Rental Marketplace
-- PropTech
-- Listing Syndication
-- Market Data
+Everything profiled for Rentals.ca is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/rentals-ca/](https://apis.io/providers/rentals-ca/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-07-26
-- **Modified:** 2026-07-26
+- [Rentsync Partners REST API](https://apis.io/apis/rentals-ca/rentsync-partners-rest-api/) — REST API described on the public Rentsync Partners portal (branded "LIFT System API") as giving partners "access to the underlying data structures of the…
+- [Rentsync Ad Syndication API](https://apis.io/apis/rentals-ca/rentsync-ad-syndication-api/) — Ad syndication API described on the public Rentsync Partners portal as programming interfaces used to "interact with rental industry professionals using…
+- [Rentsync Search API](https://apis.io/apis/rentals-ca/rentsync-search-api/) — Search API described on the public Rentsync Partners portal as a way to "query the LIFT platform for specific information", positioned by the vendor as "a…
 
-## APIs
+### Published properties
 
-### Rentsync Partners REST API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API described on the public Rentsync Partners portal (branded "LIFT System API") as giving partners "access to the underlying data structures of the LIFT System" with "detailed Canadian rental information". This is the API layer behind the Rentals.ca Network's rental listing data. Documentation is not public — https://partners.rentsync.ca/documentation returns HTTP 302 to /users/sign_in — and no base URL, endpoint list, or authentication scheme is disclosed anonymously. Access requires registering and submitting a written application describing what you plan to build.
+#### Security (1)
 
-- **Human URL:** [https://partners.rentsync.ca/](https://partners.rentsync.ca/)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Rentals Ca Domain Security](https://apis.io/security/rentals-ca/rentals-ca-domain-security/)
 
-- Rentals
-- Property Listings
-- Canada
+## Where to find this API
 
-#### Properties
-
-- [Portal](https://partners.rentsync.ca/)
-- [Signup](https://partners.rentsync.ca/users/sign_up)
-- [Login](https://partners.rentsync.ca/users/sign_in)
-
-### Rentsync Ad Syndication API
-
-Ad syndication API described on the public Rentsync Partners portal as programming interfaces used to "interact with rental industry professionals using Rentsync's Ad Syndication to manage their online advertising". This is the machine interface to the listing-distribution business that pushes property advertising into the Rentals.ca Network and partner portals. Documentation sits behind the same approved-account gate; no base URL, feed schema, or auth model is published anonymously.
-
-- **Human URL:** [https://partners.rentsync.ca/](https://partners.rentsync.ca/)
-
-#### Tags
-
-- Listing Syndication
-- Advertising
-- Rentals
-
-#### Properties
-
-- [Portal](https://partners.rentsync.ca/)
-- [Signup](https://partners.rentsync.ca/users/sign_up)
-
-### Rentsync Search API
-
-Search API described on the public Rentsync Partners portal as a way to "query the LIFT platform for specific information", positioned by the vendor as "a great way to get data for mapping applications" — the geospatial and query surface over Canadian rental listings. Documentation is gated behind an approved partner account; no base URL, query grammar, or rate limits are published anonymously.
-
-- **Human URL:** [https://partners.rentsync.ca/](https://partners.rentsync.ca/)
-
-#### Tags
-
-- Search
-- Geospatial
-- Rentals
-
-#### Properties
-
-- [Portal](https://partners.rentsync.ca/)
-- [Signup](https://partners.rentsync.ca/users/sign_up)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://rentals.ca/)
-- [Portal](https://partners.rentsync.ca/)
-- [Signup](https://partners.rentsync.ca/users/sign_up)
-- [Login](https://partners.rentsync.ca/users/sign_in)
-- [StatusPage](https://status.rentals.ca/)
-- [Blog](https://rentals.ca/blog)
-- [LinkedIn](https://ca.linkedin.com/company/rentals.ca)
-- [Website](https://rentsync.com/)
 - [Documentation](https://rentsync.com/integrations)
+- [Blog](https://rentals.ca/blog/)
+- [Terms of service](https://rentsync.com/terms-of-use)
+- [Privacy policy](https://rentsync.com/privacy-policy)
+- [Status](https://status.rentals.ca/)
 
-## RESO Posture and Access Gate
+## API Evangelist rating
 
-- **RESO posture:** no RESO reference found. No Web API or Data Dictionary certification, no `$metadata` document, no Universal Property Identifier. RESO is a US MLS/NAR artifact; Canadian for-sale listings run through CREA's REALTOR.ca DDF (itself a RESO Web API implementation), and Rentals.ca is a rentals marketplace outside that seam entirely.
-- **RESO certified:** false
-- **Access gate:** `application-approval` — register at partners.rentsync.ca and submit a written application ("Tell us why you want access to the LIFT API. What are you planning to build?"). No MLS or board membership, no IDX/VOW data licence, no real-estate licence required — and no self-serve key issuance either.
-- **Open data:** none published by the company.
-- **Auth model:** not publicly documented; the partner portal itself is a Rails/Devise username-and-password login. No OIDC discovery document (`/.well-known/openid-configuration` returns 404).
-- **Home market:** Canada.
+**Kin Score 16.6** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-See [review.yml](review.yml) for every URL probed, its HTTP status, and the full evidence trail.
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 27.6 |
 
-## Maintainers
+**Agent readiness 0.0** — human-only
 
-- Kin Lane — kin@apievangelist.com
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.0** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/rentals-ca/](https://apis.io/providers/rentals-ca/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Rentals.ca: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/rentals-ca/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
